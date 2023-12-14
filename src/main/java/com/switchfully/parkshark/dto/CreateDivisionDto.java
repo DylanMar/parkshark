@@ -1,56 +1,39 @@
-package com.switchfully.parkshark.entity;
+package com.switchfully.parkshark.dto;
 
-import jakarta.persistence.*;
+import com.switchfully.parkshark.entity.Division;
 
-@Entity
-public class Division {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column
+public class CreateDivisionDto {
     private String name;
-    @Column(name = "original_name")
     private String originalName;
-    @Column
     private String director;
-    @ManyToOne
-    @JoinColumn(name="division_id")
     private Division division;
 
-    public Division() {
+    public CreateDivisionDto() {
     }
 
-    public Division(String name, String originalName, String director, Division division) {
+    public CreateDivisionDto(String name, String originalName, String director, Division division) {
         this.name = name;
         this.originalName = originalName;
         this.director = director;
         this.division = division;
     }
 
+    // --- Getters -----------------------
 
-
-
-
-
-    // --- Getters ---------------------------
-    public int getId() {
-        return id;
-    }
     public String getName() {
         return name;
     }
+
     public String getOriginalName() {
         return originalName;
     }
+
     public String getDirector() {
         return director;
     }
+
     public Division getDivision() {
         return division;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setName(String name) {

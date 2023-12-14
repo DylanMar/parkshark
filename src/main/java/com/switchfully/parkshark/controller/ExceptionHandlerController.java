@@ -15,8 +15,8 @@ public class ExceptionHandlerController {
         response.sendError(BAD_REQUEST.value(), ex.getMessage());
     }
 
-    @ExceptionHandler(Exception.class)
-    protected void exception(Exception ex, HttpServletResponse response) throws Exception {
-        response.sendError(BAD_REQUEST.value(), ex.getMessage());
-    }
+//    @ExceptionHandler(Exception.class)
+//    protected void exception(Exception ex, HttpServletResponse response) throws Exception {
+//        response.sendError(BAD_REQUEST.value(), ex.getMessage());
+//    }
 }

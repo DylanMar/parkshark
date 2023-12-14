@@ -1,5 +1,6 @@
 package com.switchfully.parkshark.controller;
 
+import com.switchfully.parkshark.dto.CreateDivisionDto;
 import com.switchfully.parkshark.entity.Division;
 import com.switchfully.parkshark.service.DivisionService;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +18,11 @@ public class DivisionController {
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public Division createDivision(@RequestBody Division division) {
-        return divisionService.createDivision(division);
+    public Division createDivision(@RequestBody CreateDivisionDto createDivisionDto) {
+        return divisionService.createDivision(createDivisionDto);
+//        return createDivisionDto;
     }
+
 
     @GetMapping(produces = "application/json")
     public List<Division> getAllDivisions() {
