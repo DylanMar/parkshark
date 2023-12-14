@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 @Transactional
 public class DivisionService {
-    private DivisionRepository divisionRepository;
+    private final DivisionRepository divisionRepository;
 
     public DivisionService(DivisionRepository divisionRepository) {
         this.divisionRepository = divisionRepository;
@@ -25,6 +25,6 @@ public class DivisionService {
     }
 
     public Division getDivisionById(int id) {
-        return divisionRepository.getdivisionById(id);
+        return divisionRepository.getDivisionById(id);
     }
 }

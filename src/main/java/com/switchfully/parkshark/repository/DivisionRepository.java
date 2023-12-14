@@ -28,7 +28,7 @@ public class DivisionRepository {
                 .getResultList();
     }
 
-    public Division getdivisionById(int id) {
+    public Division getDivisionById(int id) {
         return entityManager
                 .createQuery("SELECT d FROM Division d WHERE d.id=:id", Division.class)
                 .setParameter("id", id)

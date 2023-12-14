@@ -3,6 +3,7 @@ package com.switchfully.parkshark.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="division")
 public class Division {
     @Id
     private int id;
