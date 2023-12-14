@@ -1,27 +1,17 @@
 package com.switchfully.parkshark.dto;
 
-import com.switchfully.parkshark.entity.Address;
-import com.switchfully.parkshark.entity.Level;
-
 import java.time.LocalDate;
 
 public class CreateMemberDto {
     private String email;
-
     private String password;
-
     private String firstName;
-
     private String lastName;
-
-    private Address address;
-
+    private CreateAddressDto address;
     private String licensePlate;
-
-
     private LocalDate registrationDate;
 
-    public CreateMemberDto(String email, String password, String firstName, String lastName, Address address, String licensePlate, LocalDate registrationDate) {
+    public CreateMemberDto(String email, String password, String firstName, String lastName, CreateAddressDto address, String licensePlate, LocalDate registrationDate) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -64,11 +54,11 @@ public class CreateMemberDto {
         this.lastName = lastName;
     }
 
-    public Address getAddress() {
+    public CreateAddressDto getCreateAddressDto() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setCreateAddressDto(CreateAddressDto address) {
         this.address = address;
     }
 

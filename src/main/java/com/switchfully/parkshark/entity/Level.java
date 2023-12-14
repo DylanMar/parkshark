@@ -14,8 +14,7 @@ public class Level {
     @Column(name = "MAXIMUM_TIME")
     private double maximumTime;
 
-    public Level() {
-    }
+    public Level() {}
 
     public Long getId() {
         return id;

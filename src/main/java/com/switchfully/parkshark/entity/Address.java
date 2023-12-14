@@ -14,7 +14,12 @@ public class Address {
     @Column(name = "POSTAL_CODE")
     private String postalCode;
 
-    public Address() {
+    public Address() {}
+
+    public Address(String streetName, String streetNumber, String postalCode) {
+        this.streetName = streetName;
+        this.streetNumber = streetNumber;
+        this.postalCode = postalCode;
     }
 
     public Long getId() {

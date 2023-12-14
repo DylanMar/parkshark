@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+import static jakarta.persistence.CascadeType.PERSIST;
+
 @Entity
 public class Member {
     @Id
@@ -17,7 +19,7 @@ public class Member {
     private String firstName;
     @Column(name="LAST_NAME")
     private String lastName;
-    @OneToOne
+    @OneToOne(cascade = {PERSIST})
     @JoinColumn(name="ADDRESS_ID")
     private Address address;
     @Column(name="LICENSE_PLATE")
@@ -28,9 +30,16 @@ public class Member {
     @Column(name="REGISTRATION_DATE")
     private LocalDate registrationDate;
 
-    public Member() {
-    }
+    public Member() {}
 
+    public Member(String email, String password, String firstName, String lastName, Address address, String licensePlate) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.licensePlate = licensePlate;
+    }
 
     public Long getId() {
         return id;

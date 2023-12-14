@@ -1,32 +1,21 @@
 package com.switchfully.parkshark.dto;
 
-import com.switchfully.parkshark.entity.Address;
 import com.switchfully.parkshark.entity.Level;
-import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 public class MemberDto {
-
     private Long id;
-
     private String email;
-
     private String password;
-
     private String firstName;
-
     private String lastName;
-
-    private Address address;
-
+    private AddressDto address;
     private String licensePlate;
-
     private Level level;
-
     private LocalDate registrationDate;
 
-    public MemberDto(Long id, String email, String password, String firstName, String lastName, Address address, String licensePlate, Level level, LocalDate registrationDate) {
+    public MemberDto(Long id, String email, String password, String firstName, String lastName, AddressDto address, String licensePlate, Level level, LocalDate registrationDate) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -40,6 +29,10 @@ public class MemberDto {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -74,11 +67,11 @@ public class MemberDto {
         this.lastName = lastName;
     }
 
-    public Address getAddress() {
+    public AddressDto getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(AddressDto address) {
         this.address = address;
     }
 

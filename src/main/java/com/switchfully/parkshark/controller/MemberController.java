@@ -20,7 +20,7 @@ public class MemberController {
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(CREATED)
-        public MemberDto addMember(@RequestBody CreateMemberDto createMemberDto) {
+    public MemberDto addMember(@RequestBody CreateMemberDto createMemberDto) {
         return memberService.addMember(createMemberDto);
     }
 
