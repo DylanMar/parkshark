@@ -11,9 +11,11 @@ import java.time.LocalDate;
 @Component
 public class MemberMapper {
     private AddressMapper addressMapper;
+    private LevelMapper levelMapper;
 
-    public MemberMapper(AddressMapper addressMapper) {
+    public MemberMapper(AddressMapper addressMapper, LevelMapper levelMapper) {
         this.addressMapper = addressMapper;
+        this.levelMapper = levelMapper;
     }
 
     public Member createMemberDtoToMember(CreateMemberDto createMemberDto) {
@@ -36,7 +38,7 @@ public class MemberMapper {
                 member.getLastName(),
                 addressMapper.addressToAddressDto(member.getAddress()),
                 member.getLicensePlate(),
-                member.getLevel(),
+                levelMapper.levelToLevelDto(member.getLevel()),
                 member.getRegistrationDate()
         );
     }
