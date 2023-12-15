@@ -6,6 +6,8 @@ import com.switchfully.parkshark.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
@@ -22,6 +24,11 @@ public class MemberController {
     @ResponseStatus(CREATED)
     public MemberDto addMember(@RequestBody CreateMemberDto createMemberDto) {
         return memberService.addMember(createMemberDto);
+    }
+
+    @GetMapping
+    public List<MemberDto> getAllMembers(){
+        return memberService.getAllMembers();
     }
 
 }

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -27,8 +29,12 @@ public class MemberService {
     public MemberDto addMember(CreateMemberDto createMemberDto) {
         Member member = memberMapper.createMemberDtoToMember(createMemberDto);
         member.setRegistrationDate(LocalDate.now());
-        member.setLevel(levelRepository.find(1));
+        member.setLevel(levelRepository.findById(1L).get());
 
-        return memberMapper.memberToMemberDto(memberRepository.addMember(member));
+        return memberMapper.memberToMemberDto(memberRepository.save(member));
+    }
+
+    public List<MemberDto> getAllMembers() {
+        return memberRepository.findAll().stream().map(member -> memberMapper.memberToMemberDto(member)).collect(Collectors.toList());
     }
 }
