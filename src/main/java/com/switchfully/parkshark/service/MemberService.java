@@ -2,6 +2,7 @@ package com.switchfully.parkshark.service;
 
 import com.switchfully.parkshark.dto.CreateMemberDto;
 import com.switchfully.parkshark.dto.MemberDto;
+import com.switchfully.parkshark.entity.LevelType;
 import com.switchfully.parkshark.entity.Member;
 import com.switchfully.parkshark.mapper.MemberMapper;
 import com.switchfully.parkshark.repository.LevelRepository;
@@ -30,8 +31,11 @@ public class MemberService {
     public MemberDto addMember(CreateMemberDto createMemberDto) {
         Member member = memberMapper.createMemberDtoToMember(createMemberDto);
         member.setRegistrationDate(LocalDate.now());
-        member.setLevel(levelRepository.findById(1L).get());
-
+        if(createMemberDto.getLevelType() instanceof LevelType){
+            member.setLevel(levelRepository.findByLevelType(createMemberDto.getLevelType()));
+        } else {
+            member.setLevel(levelRepository.findByLevelType(LevelType.BRONZE));
+        }
         return memberMapper.memberToMemberDto(memberRepository.save(member));
     }
 

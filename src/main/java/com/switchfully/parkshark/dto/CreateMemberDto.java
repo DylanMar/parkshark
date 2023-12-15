@@ -1,5 +1,7 @@
 package com.switchfully.parkshark.dto;
 
+import com.switchfully.parkshark.entity.LevelType;
+
 import java.time.LocalDate;
 
 public class CreateMemberDto {
@@ -9,18 +11,19 @@ public class CreateMemberDto {
     private String lastName;
     private CreateAddressDto address;
     private String licensePlate;
+    private LevelType levelType;
     private LocalDate registrationDate;
 
-    public CreateMemberDto(String email, String password, String firstName, String lastName, CreateAddressDto address, String licensePlate, LocalDate registrationDate) {
+    public CreateMemberDto(String email, String password, String firstName, String lastName, CreateAddressDto address, String licensePlate, LevelType levelType, LocalDate registrationDate) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.licensePlate = licensePlate;
+        this.levelType = levelType;
         this.registrationDate = registrationDate;
     }
-
 
     public String getEmail() {
         return email;
@@ -54,11 +57,11 @@ public class CreateMemberDto {
         this.lastName = lastName;
     }
 
-    public CreateAddressDto getCreateAddressDto() {
+    public CreateAddressDto getAddress() {
         return address;
     }
 
-    public void setCreateAddressDto(CreateAddressDto address) {
+    public void setAddress(CreateAddressDto address) {
         this.address = address;
     }
 
@@ -70,6 +73,13 @@ public class CreateMemberDto {
         this.licensePlate = licensePlate;
     }
 
+    public LevelType getLevelType() {
+        return levelType;
+    }
+
+    public void setLevelType(LevelType levelType) {
+        this.levelType = levelType;
+    }
 
     public LocalDate getRegistrationDate() {
         return registrationDate;
@@ -78,5 +88,4 @@ public class CreateMemberDto {
     public void setRegistrationDate(LocalDate registrationDate) {
         this.registrationDate = registrationDate;
     }
-
 }

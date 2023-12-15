@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 public class LevelMapper {
 
     public LevelDto levelToLevelDto(Level level){
-        return new LevelDto(level.getId(), level.getMonthlyCost(), level.getAllocationReduction(), level.getMaximumTime());
+        return new LevelDto(level.getId(), level.getMonthlyCost(), level.getAllocationReduction(), level.getMaximumTime(), level.getLevelType());
     }
 }

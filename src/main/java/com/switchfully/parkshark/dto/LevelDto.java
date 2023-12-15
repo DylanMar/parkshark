@@ -1,5 +1,7 @@
 package com.switchfully.parkshark.dto;
 
+import com.switchfully.parkshark.entity.LevelType;
+
 public class LevelDto {
 
     private Long id;
@@ -10,17 +12,24 @@ public class LevelDto {
 
     private double maximumTime;
 
+    private LevelType levelType;
+
     public LevelDto() {}
 
-    public LevelDto(Long id, double monthlyCost, double allocationReduction, double maximumTime) {
+    public LevelDto(Long id, double monthlyCost, double allocationReduction, double maximumTime, LevelType levelType) {
         this.id = id;
         this.monthlyCost = monthlyCost;
         this.allocationReduction = allocationReduction;
         this.maximumTime = maximumTime;
+        this.levelType = levelType;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getMonthlyCost() {
@@ -45,5 +54,13 @@ public class LevelDto {
 
     public void setMaximumTime(double maximumTime) {
         this.maximumTime = maximumTime;
+    }
+
+    public LevelType getLevelType() {
+        return levelType;
+    }
+
+    public void setLevelType(LevelType levelType) {
+        this.levelType = levelType;
     }
 }

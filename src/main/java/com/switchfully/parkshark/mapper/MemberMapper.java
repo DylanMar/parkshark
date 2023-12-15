@@ -24,7 +24,7 @@ public class MemberMapper {
                 createMemberDto.getPassword(),
                 createMemberDto.getFirstName(),
                 createMemberDto.getLastName(),
-                addressMapper.createAddressDtoToAddress(createMemberDto.getCreateAddressDto()),
+                addressMapper.createAddressDtoToAddress(createMemberDto.getAddress()),
                 createMemberDto.getLicensePlate()
         );
     }
