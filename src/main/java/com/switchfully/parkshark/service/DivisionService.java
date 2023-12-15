@@ -22,9 +22,14 @@ public class DivisionService {
         this.divisionMapper = divisionMapper;
     }
 
-    // TODO DivisionDto
     public Division createDivision(CreateDivisionDto createDivisionDto) {
-        Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto);
+        Division parentDivision = null;
+        try {
+            parentDivision = divisionRepository.getDivisionById( createDivisionDto.getParentDivisionId());
+        } catch (Exception e) {  // possible for logging
+        }
+
+        Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto, parentDivision);
         return divisionRepository.createDivision(division);
     }
 

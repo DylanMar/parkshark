@@ -2,11 +2,8 @@ package com.switchfully.parkshark.mapper;
 
 import com.switchfully.parkshark.dto.CreateMemberDto;
 import com.switchfully.parkshark.dto.MemberDto;
-import com.switchfully.parkshark.entity.Address;
 import com.switchfully.parkshark.entity.Member;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
 
 @Component
 public class MemberMapper {
@@ -22,7 +19,7 @@ public class MemberMapper {
                 createMemberDto.getPassword(),
                 createMemberDto.getFirstName(),
                 createMemberDto.getLastName(),
-                addressMapper.createAddressDtoToAddress(createMemberDto.getCreateAddressDto()),
+                addressMapper.mapCreateAddressDtoToAddress(createMemberDto.getCreateAddressDto()),
                 createMemberDto.getLicensePlate()
         );
     }
@@ -34,7 +31,7 @@ public class MemberMapper {
                 member.getPassword(),
                 member.getFirstName(),
                 member.getLastName(),
-                addressMapper.addressToAddressDto(member.getAddress()),
+                addressMapper.mapAddressToAddressDto(member.getAddress()),
                 member.getLicensePlate(),
                 member.getLevel(),
                 member.getRegistrationDate()

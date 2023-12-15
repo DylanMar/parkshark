@@ -1,29 +1,16 @@
-package com.switchfully.parkshark.entity;
+package com.switchfully.parkshark.dto;
 
-import jakarta.persistence.*;
+import com.switchfully.parkshark.entity.Address;
 
-@Entity
-public class Contact {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "first_name")
+public class CreateContactDto {
     private String firstName;
-    @Column(name = "last_name")
     private String lastName;
-    @Column(name = "mobile_number")
     private String mobileNumber;
-    @Column(name = "phone_number")
     private String phoneNumber;
-    @Column(name = "email")
     private String email;
-    @OneToOne
     private Address address;
 
-    public Contact() {
-    }
-
-    public Contact(String firstName, String lastName, String mobileNumber, String phoneNumber, String email, Address address) {
+    public CreateContactDto(String firstName, String lastName, String mobileNumber, String phoneNumber, String email, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mobileNumber = mobileNumber;
@@ -32,12 +19,11 @@ public class Contact {
         this.address = address;
     }
 
-
-    // --- Getters --------------------
-
-    public int getId() {
-        return id;
+    public CreateContactDto() {
     }
+
+
+    // --- Getters ------------------------------
 
     public String getFirstName() {
         return firstName;

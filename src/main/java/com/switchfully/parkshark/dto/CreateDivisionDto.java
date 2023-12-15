@@ -6,16 +6,17 @@ public class CreateDivisionDto {
     private String name;
     private String originalName;
     private String director;
-    private Division division;
+//    private DivisionDto divisionDto;
+    private int parentDivisionId;
 
     public CreateDivisionDto() {
     }
 
-    public CreateDivisionDto(String name, String originalName, String director, Division division) {
+    public CreateDivisionDto(String name, String originalName, String director, int parentDivisionId) {
         this.name = name;
         this.originalName = originalName;
         this.director = director;
-        this.division = division;
+        this.parentDivisionId = parentDivisionId;
     }
 
     // --- Getters -----------------------
@@ -32,23 +33,12 @@ public class CreateDivisionDto {
         return director;
     }
 
-    public Division getDivision() {
-        return division;
-    }
 
+    public int getParentDivisionId() {
+        return parentDivisionId;
+    }
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setOriginalName(String originalName) {
-        this.originalName = originalName;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
-    public void setDivision(Division division) {
-        this.division = division;
-    }
 }
