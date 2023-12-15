@@ -1,6 +1,7 @@
 package com.switchfully.parkshark.controller;
 
 import com.switchfully.parkshark.dto.CreateDivisionDto;
+import com.switchfully.parkshark.dto.DivisionDto;
 import com.switchfully.parkshark.entity.Division;
 import com.switchfully.parkshark.service.DivisionService;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +26,12 @@ public class DivisionController {
 
 
     @GetMapping(produces = "application/json")
-    public List<Division> getAllDivisions() {
+    public List<DivisionDto> getAllDivisions() {
         return divisionService.getAllDivisions();
     }
-    @GetMapping(path ="/{id}", produces = "application/json")
-    public Division getDivisionById(@PathVariable int id) {
+
+    @GetMapping(path = "/{id}", produces = "application/json")
+    public DivisionDto getDivisionById(@PathVariable int id) {
         return divisionService.getDivisionById(id);
     }
 }

@@ -1,6 +1,7 @@
 package com.switchfully.parkshark.mapper;
 
 import com.switchfully.parkshark.dto.CreateDivisionDto;
+import com.switchfully.parkshark.dto.DivisionDto;
 import com.switchfully.parkshark.entity.Division;
 import org.springframework.stereotype.Component;
 
@@ -15,4 +16,14 @@ public class DivisionMapper {
                 createDivisionDto.getDivision()
         );
     }
+    public DivisionDto mapDivisionToDivisionDto(Division division) {
+        return new DivisionDto(
+                division.getId(),
+                division.getName(),
+                division.getOriginalName(),
+                division.getDirector(),
+                division.getDivision()
+        );
+    }
+
 }
