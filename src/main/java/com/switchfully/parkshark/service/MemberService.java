@@ -9,6 +9,7 @@ import com.switchfully.parkshark.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sound.midi.MetaMessage;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,5 +37,10 @@ public class MemberService {
 
     public List<MemberDto> getAllMembers() {
         return memberRepository.findAll().stream().map(member -> memberMapper.memberToMemberDto(member)).collect(Collectors.toList());
+    }
+
+    public MemberDto getById(Long id) {
+        Member member = memberRepository.findById(id).get();
+        return memberMapper.memberToMemberDto(member);
     }
 }
