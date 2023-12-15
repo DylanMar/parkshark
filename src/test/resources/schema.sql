@@ -18,8 +18,7 @@ CREATE TABLE division
     NAME    VARCHAR(255) NOT NULL,
     ORIGINAL_NAME VARCHAR(255) NOT NULL,
     DIRECTOR   VARCHAR(255) NOT NULL,
-    DIVISION_ID INT DEFAULT NULL,
-    CONSTRAINT DIVISION_ID foreign key (DIVISION_ID) references DIVISION (ID)
+    DIVISION_ID INT DEFAULT NULL
 );
 
 CREATE TABLE level
@@ -52,7 +51,7 @@ CREATE TABLE contact (
                          PHONE_NUMBER VARCHAR (255) DEFAULT NULL,
                          EMAIL VARCHAR (255) NOT NULL,
                          ADDRESS_ID INT DEFAULT NULL,
-                         CONSTRAINT ADDRESS_ID foreign key (ADDRESS_ID) references ADDRESS (ID)
+                         CONSTRAINT IF NOT EXISTS ADDRESS_ID foreign key (ADDRESS_ID) references ADDRESS (ID)
 );
 
 CREATE TABLE parking_lot (
@@ -63,9 +62,9 @@ CREATE TABLE parking_lot (
                              DIVISION_ID INT DEFAULT NULL,
                              CONSTRAINT DIVISION_ID foreign key (DIVISION_ID) references DIVISION (ID),
                              ADDRESS_ID INT DEFAULT NULL,
-                             CONSTRAINT ADDRESS_ID foreign key (ADDRESS_ID) references ADDRESS (ID),
+                             CONSTRAINT IF NOT EXISTS ADDRESS_ID foreign key (ADDRESS_ID) references ADDRESS (ID),
                              CONTACT_ID INT DEFAULT NULL,
-                             CONSTRAINT CONTACT_ID foreign key (CONTACT_ID) references CONTACT (ID)
+                             CONSTRAINT IF NOT EXISTS CONTACT_ID foreign key (CONTACT_ID) references CONTACT (ID)
 );
 
 CREATE TABLE allocation (
