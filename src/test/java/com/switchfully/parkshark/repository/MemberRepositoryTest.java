@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootTest
 @Sql("/data.sql")
@@ -35,4 +36,37 @@ class MemberRepositoryTest {
         // THEN
         Assertions.assertThat(actual).isInstanceOf(Member.class);
     }
+
+    @Test
+    void givenMember_whenGetMemberById_thenGetMember() {
+        // GIVEN
+        Level level = levelRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException("Member not found with id: " + 1));
+        Address address = new Address("streetName", "streetNumber", "postalCode");
+        Member member = new Member("email", "password", "firstName", "lastName", address, "licensePlate");
+        member.setLevel(level);
+        member.setRegistrationDate(LocalDate.now());
+        Member newMember = memberRepository.save(member);
+
+        // WHEN
+        Member actual = memberRepository.findById(1L).get();
+        // THEN
+        Assertions.assertThat(actual).isInstanceOf(Member.class);
+    }
+
+    @Test
+    void givenMember_whenGetAllMembers_thenGetAllMembers() {
+        // GIVEN
+        Level level = levelRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException("Member not found with id: " + 1));
+        Address address = new Address("streetName", "streetNumber", "postalCode");
+        Member member = new Member("email", "password", "firstName", "lastName", address, "licensePlate");
+        member.setLevel(level);
+        member.setRegistrationDate(LocalDate.now());
+        Member newMember = memberRepository.save(member);
+
+        // WHEN
+        List<Member> actual = memberRepository.findAll();
+        // THEN
+        Assertions.assertThat(actual).hasSize(1);
+    }
+
 }

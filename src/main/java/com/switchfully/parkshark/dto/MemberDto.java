@@ -12,10 +12,10 @@ public class MemberDto {
     private String lastName;
     private AddressDto address;
     private String licensePlate;
-    private Level level;
+    private LevelDto level;
     private LocalDate registrationDate;
 
-    public MemberDto(Long id, String email, String password, String firstName, String lastName, AddressDto address, String licensePlate, Level level, LocalDate registrationDate) {
+    public MemberDto(Long id, String email, String password, String firstName, String lastName, AddressDto address, String licensePlate, LevelDto level, LocalDate registrationDate) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -83,11 +83,11 @@ public class MemberDto {
         this.licensePlate = licensePlate;
     }
 
-    public Level getLevel() {
+    public LevelDto getLevel() {
         return level;
     }
 
-    public void setLevel(Level level) {
+    public void setLevel(LevelDto level) {
         this.level = level;
     }
 

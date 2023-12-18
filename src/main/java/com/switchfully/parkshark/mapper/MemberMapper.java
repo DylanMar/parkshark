@@ -8,9 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class MemberMapper {
     private AddressMapper addressMapper;
+    private LevelMapper levelMapper;
 
-    public MemberMapper(AddressMapper addressMapper) {
+    public MemberMapper(AddressMapper addressMapper, LevelMapper levelMapper) {
         this.addressMapper = addressMapper;
+        this.levelMapper = levelMapper;
     }
 
     public Member createMemberDtoToMember(CreateMemberDto createMemberDto) {
@@ -19,7 +21,7 @@ public class MemberMapper {
                 createMemberDto.getPassword(),
                 createMemberDto.getFirstName(),
                 createMemberDto.getLastName(),
-                addressMapper.mapCreateAddressDtoToAddress(createMemberDto.getCreateAddressDto()),
+                addressMapper.createAddressDtoToAddress(createMemberDto.getAddress()),
                 createMemberDto.getLicensePlate()
         );
     }
@@ -31,9 +33,9 @@ public class MemberMapper {
                 member.getPassword(),
                 member.getFirstName(),
                 member.getLastName(),
-                addressMapper.mapAddressToAddressDto(member.getAddress()),
+                addressMapper.addressToAddressDto(member.getAddress()),
                 member.getLicensePlate(),
-                member.getLevel(),
+                levelMapper.levelToLevelDto(member.getLevel()),
                 member.getRegistrationDate()
         );
     }

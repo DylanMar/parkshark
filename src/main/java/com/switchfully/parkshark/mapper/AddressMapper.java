@@ -7,17 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AddressMapper {
-    public Address mapCreateAddressDtoToAddress(CreateAddressDto createAddressDto) {
+    public Address createAddressDtoToAddress(CreateAddressDto createAddressDto) {
         return new Address(createAddressDto.getStreetName(), createAddressDto.getStreetNumber(), createAddressDto.getPostalCode());
     }
 
-    public AddressDto mapAddressToAddressDto(Address address) {
+    public AddressDto addressToAddressDto(Address address) {
         return new AddressDto(address.getId(), address.getStreetName(), address.getStreetNumber(), address.getPostalCode());
     }
-
-    public Address mapAddressDtoToAddress(AddressDto addressDto) {
-        return new Address(addressDto.getStreetName(), addressDto.getStreetNumber(), addressDto.getPostalCode());
-    }
-
-
 }

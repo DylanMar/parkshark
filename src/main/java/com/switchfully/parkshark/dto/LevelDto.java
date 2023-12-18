@@ -1,26 +1,35 @@
-package com.switchfully.parkshark.entity;
+package com.switchfully.parkshark.dto;
 
-import jakarta.persistence.*;
+import com.switchfully.parkshark.entity.LevelType;
 
-@Entity
-public class Level {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class LevelDto {
+
     private Long id;
-    @Column(name = "MONTHLY_COST")
+
     private double monthlyCost;
-    @Column(name = "ALLOCATION_REDUCTION")
+
     private double allocationReduction;
-    @Column(name = "MAXIMUM_TIME")
+
     private double maximumTime;
-    @Column(name = "LEVEL_TYPE")
-    @Enumerated(EnumType.STRING)
+
     private LevelType levelType;
 
-    public Level() {}
+    public LevelDto() {}
+
+    public LevelDto(Long id, double monthlyCost, double allocationReduction, double maximumTime, LevelType levelType) {
+        this.id = id;
+        this.monthlyCost = monthlyCost;
+        this.allocationReduction = allocationReduction;
+        this.maximumTime = maximumTime;
+        this.levelType = levelType;
+    }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getMonthlyCost() {
@@ -50,6 +59,7 @@ public class Level {
     public LevelType getLevelType() {
         return levelType;
     }
+
     public void setLevelType(LevelType levelType) {
         this.levelType = levelType;
     }
