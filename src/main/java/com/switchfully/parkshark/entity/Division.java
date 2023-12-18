@@ -2,18 +2,20 @@ package com.switchfully.parkshark.entity;
 
 import jakarta.persistence.*;
 
+import static jakarta.persistence.CascadeType.PERSIST;
+
 @Entity
 public class Division {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column
     private String name;
     @Column(name = "original_name")
     private String originalName;
     @Column
     private String director;
-    @ManyToOne
+    @ManyToOne(cascade = {PERSIST})
     @JoinColumn(name="division_id")
     private Division division;
 
@@ -27,13 +29,9 @@ public class Division {
         this.division = division;
     }
 
-
-
-
-
-
     // --- Getters ---------------------------
-    public int getId() {
+
+    public long getId() {
         return id;
     }
     public String getName() {
@@ -47,10 +45,6 @@ public class Division {
     }
     public Division getDivision() {
         return division;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setName(String name) {
@@ -67,5 +61,9 @@ public class Division {
 
     public void setDivision(Division division) {
         this.division = division;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

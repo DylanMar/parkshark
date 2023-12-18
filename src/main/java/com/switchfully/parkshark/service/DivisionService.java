@@ -22,26 +22,28 @@ public class DivisionService {
         this.divisionMapper = divisionMapper;
     }
 
-    public Division createDivision(CreateDivisionDto createDivisionDto) {
-        Division parentDivision = null;
-        try {
-            parentDivision = divisionRepository.getDivisionById( createDivisionDto.getParentDivisionId());
-        } catch (Exception e) {  // possible for logging
-        }
-
-        Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto, parentDivision);
-        return divisionRepository.createDivision(division);
+    public DivisionDto createDivision(CreateDivisionDto createDivisionDto) {
+        Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto);
+        return divisionMapper.mapDivisionToDivisionDto( divisionRepository.save(division) );
     }
 
     public List<DivisionDto> getAllDivisions() {
-        List<Division> divisions = divisionRepository.getAllDivisions();;
+        List<Division> divisions = divisionRepository.findAll(); // getAllDivisions();;
         return divisions.stream()
                 .map(divisionMapper::mapDivisionToDivisionDto)
                 .collect(Collectors.toList());
     }
 
-    public DivisionDto getDivisionById(int id) {
-        Division division = divisionRepository.getDivisionById(id);
+    public DivisionDto getDivisionById(long id) {
+        Division division = divisionRepository.findById(id)
+                .orElseThrow( () -> new IllegalArgumentException("Id "+id+", not found."));
         return divisionMapper.mapDivisionToDivisionDto(division);
+    }
+
+    public DivisionDto createSubDivision(CreateDivisionDto createDivisionDto, long id) {
+        Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto);
+        division.setDivision( divisionRepository.findById(id)
+                .orElseThrow( () -> new IllegalArgumentException("Parent id "+id+", not found.")));
+        return divisionMapper.mapDivisionToDivisionDto( divisionRepository.save(division) );
     }
 }

@@ -8,22 +8,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class DivisionMapper {
 
-    public Division mapCreateDivisionDtoToDivision(CreateDivisionDto createDivisionDto, Division parentDivision) {
+    public Division mapCreateDivisionDtoToDivision(CreateDivisionDto createDivisionDto) {
+//        if (createDivisionDto.getParentDivision() == null) return null;
         return new Division(
                 createDivisionDto.getName(),
                 createDivisionDto.getOriginalName(),
                 createDivisionDto.getDirector(),
-                parentDivision
+                (createDivisionDto.getParentDivision() != null ? mapCreateDivisionDtoToDivision( createDivisionDto.getParentDivision() ) : null)
         );
     }
-//    public Division mapDivisionDtoToDivision(DivisionDto divisionDto) {
-//        return new Division(
-//                divisionDto.getName(),
-//                divisionDto.getOriginalName(),
-//                divisionDto.getDirector(),
-//                divisionDto.getDivisionId() != null ? mapDivisionDtoToDivision( divisionDto.getDivisionId()) : -1
-//        );
-//    }
+
     public DivisionDto mapDivisionToDivisionDto(Division division) {
         if (division == null) return null;
 
@@ -32,7 +26,7 @@ public class DivisionMapper {
                 division.getName(),
                 division.getOriginalName(),
                 division.getDirector(),
-                mapDivisionToDivisionDto(division.getDivision())
+                mapDivisionToDivisionDto( division.getDivision() )
         );
     }
 

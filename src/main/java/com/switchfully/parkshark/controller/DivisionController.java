@@ -19,10 +19,9 @@ public class DivisionController {
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public Division createDivision(@RequestBody CreateDivisionDto createDivisionDto) {
+    public DivisionDto createDivision(@RequestBody CreateDivisionDto createDivisionDto) {
         return divisionService.createDivision(createDivisionDto);
     }
-
 
     @GetMapping(produces = "application/json")
     public List<DivisionDto> getAllDivisions() {
@@ -30,7 +29,12 @@ public class DivisionController {
     }
 
     @GetMapping(path = "/{id}", produces = "application/json")
-    public DivisionDto getDivisionById(@PathVariable int id) {
+    public DivisionDto getDivisionById(@PathVariable long id) {
         return divisionService.getDivisionById(id);
+    }
+
+    @PostMapping(path = "/{id}", consumes = "application/json", produces = "application/json")
+    public DivisionDto createSubDivision(@PathVariable long id, @RequestBody CreateDivisionDto createDivisionDto) {
+        return divisionService.createSubDivision(createDivisionDto,id);
     }
 }

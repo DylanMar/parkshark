@@ -1,6 +1,7 @@
 package com.switchfully.parkshark.mapper;
 
 import com.switchfully.parkshark.dto.ContactDto;
+import com.switchfully.parkshark.dto.ContactGdprDto;
 import com.switchfully.parkshark.dto.CreateContactDto;
 import com.switchfully.parkshark.entity.Contact;
 import org.springframework.stereotype.Component;
@@ -37,6 +38,13 @@ public class ContactMapper {
                 contactDto.getPhoneNumber(),
                 contactDto.getEmail(),
                 contactDto.getAddress()
+        );
+    }
+    public ContactGdprDto mapContactToContactGdprDto(Contact contact) {
+        return new ContactGdprDto(
+                contact.getMobileNumber(),
+                contact.getPhoneNumber(),
+                contact.getEmail()
         );
     }
 }

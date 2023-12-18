@@ -2,11 +2,13 @@ package com.switchfully.parkshark.entity;
 
 import jakarta.persistence.*;
 
+import static jakarta.persistence.CascadeType.PERSIST;
+
 @Entity
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -17,7 +19,7 @@ public class Contact {
     private String phoneNumber;
     @Column(name = "email")
     private String email;
-    @OneToOne
+    @OneToOne(cascade = {PERSIST})
     private Address address;
 
     public Contact() {
@@ -35,7 +37,7 @@ public class Contact {
 
     // --- Getters --------------------
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
