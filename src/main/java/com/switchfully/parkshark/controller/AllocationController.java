@@ -22,8 +22,9 @@ public class AllocationController {
     @ResponseStatus(CREATED)
     public AllocationDto createAllocation(@RequestHeader String email, @RequestHeader String password, @RequestBody CreateAllocationDto createAllocationDto){
         Member member = memberService.authenticate(email, password);
+        allocationService.checkLicensePlate(member, createAllocationDto);
 
-        return allocationService.createAllocation(member, createAllocationDto);
+        return allocationService.startAllocation(member, createAllocationDto);
     }
 
 }
