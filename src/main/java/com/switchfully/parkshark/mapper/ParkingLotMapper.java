@@ -37,7 +37,7 @@ public class ParkingLotMapper {
                 parkingLot.getCategory(),
                 parkingLot.getMax_capacity(),
                 parkingLot.getDivision() != null ? divisionMapper.mapDivisionToDivisionDto( parkingLot.getDivision() ) : null,
-                parkingLot.getAddress() != null ? addressMapper.mapAddressToAddressDto( parkingLot.getAddress() ) : null,
+                parkingLot.getAddress() != null ? addressMapper.addressToAddressDto( parkingLot.getAddress() ) : null,
                 parkingLot.getContact() != null ? contactMapper.mapContactToContactDto( parkingLot.getContact() ) : null
         );
     }
