@@ -23,4 +23,10 @@ public class ParkingLotRepository {
                 .getSingleResult();
     }
 
+    public ParkingLot findById(Long id){
+        return entityManager.createQuery("SELECT pl FROM ParkingLot pl WHERE id=:id", ParkingLot.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }
+
 }
