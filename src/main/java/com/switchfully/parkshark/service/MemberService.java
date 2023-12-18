@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class MemberService {
-    private LevelRepository levelRepository;
-    private MemberMapper memberMapper;
-    private MemberRepository memberRepository;
+    private final LevelRepository levelRepository;
+    private final MemberMapper memberMapper;
+    private final MemberRepository memberRepository;
 
     public MemberService(LevelRepository levelRepository, MemberMapper memberMapper, MemberRepository memberRepository) {
         this.levelRepository = levelRepository;

@@ -2,6 +2,8 @@ package com.switchfully.parkshark.entity;
 
 import jakarta.persistence.*;
 
+import static jakarta.persistence.CascadeType.PERSIST;
+
 @Entity
 public class ParkingLot {
     @Id
@@ -13,12 +15,12 @@ public class ParkingLot {
     private Category category;
     @Column
     private int max_capacity;
-    @ManyToOne
+    @ManyToOne(cascade = {PERSIST})
     @JoinColumn(name="division_id")
     private Division division;
-    @OneToOne
+    @OneToOne(cascade = {PERSIST})
     private Address address;
-    @ManyToOne
+    @ManyToOne(cascade = {PERSIST})
     @JoinColumn(name = "contact_id")
     private Contact contact;
 

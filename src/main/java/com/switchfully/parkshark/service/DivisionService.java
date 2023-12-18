@@ -22,26 +22,28 @@ public class DivisionService {
         this.divisionMapper = divisionMapper;
     }
 
-    public Division createDivision(CreateDivisionDto createDivisionDto) {
-        Division parentDivision = null;
-        try {
-            parentDivision = divisionRepository.getDivisionById( createDivisionDto.getParentDivisionId());
-        } catch (Exception e) {  // possible for logging
-        }
+    public DivisionDto createDivision(CreateDivisionDto createDivisionDto) {
+//        Division parentDivision = null;
+//        try {
+//            parentDivision = divisionRepository.getDivisionById( createDivisionDto.getParentDivisionId());
+//        } catch (Exception e) {  // possible for logging
+//        }
 
-        Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto, parentDivision);
-        return divisionRepository.createDivision(division);
+//        Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto, parentDivision);
+        Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto);
+
+        return divisionMapper.mapDivisionToDivisionDto( divisionRepository.save(division) );
     }
 
     public List<DivisionDto> getAllDivisions() {
-        List<Division> divisions = divisionRepository.getAllDivisions();;
+        List<Division> divisions = divisionRepository.findAll(); // getAllDivisions();;
         return divisions.stream()
                 .map(divisionMapper::mapDivisionToDivisionDto)
                 .collect(Collectors.toList());
     }
 
-    public DivisionDto getDivisionById(int id) {
-        Division division = divisionRepository.getDivisionById(id);
+    public DivisionDto getDivisionById(long id) {
+        Division division = divisionRepository.findById(id).get();     //getDivisionById(id);
         return divisionMapper.mapDivisionToDivisionDto(division);
     }
 }
