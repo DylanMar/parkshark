@@ -3,10 +3,8 @@ package com.switchfully.parkshark.mapper;
 import com.switchfully.parkshark.dto.CreateParkingLotDto;
 import com.switchfully.parkshark.dto.ParkingLotDto;
 import com.switchfully.parkshark.dto.ParkingLotGdprDto;
-import com.switchfully.parkshark.entity.Address;
-import com.switchfully.parkshark.entity.Contact;
-import com.switchfully.parkshark.entity.Division;
 import com.switchfully.parkshark.entity.ParkingLot;
+import com.switchfully.parkshark.repository.DivisionRepository;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,11 +12,13 @@ public class ParkingLotMapper {
     private final DivisionMapper divisionMapper;
     private final AddressMapper addressMapper;
     private final ContactMapper contactMapper;
+    private final DivisionRepository divisionRepository;
 
-    public ParkingLotMapper(DivisionMapper divisionMapper, AddressMapper addressMapper, ContactMapper contactMapper) {
+    public ParkingLotMapper(DivisionMapper divisionMapper, AddressMapper addressMapper, ContactMapper contactMapper, DivisionRepository divisionRepository) {
         this.divisionMapper = divisionMapper;
         this.addressMapper = addressMapper;
         this.contactMapper = contactMapper;
+        this.divisionRepository = divisionRepository;
     }
 
     public ParkingLot mapCreateParkingLotToParkingLot(CreateParkingLotDto createParkingLotDto) {
@@ -26,8 +26,9 @@ public class ParkingLotMapper {
                 createParkingLotDto.getName(),
                 createParkingLotDto.getCategory(),
                 createParkingLotDto.getMax_capacity(),
-                divisionMapper.mapCreateDivisionDtoToDivision(createParkingLotDto.getDivision()),
-                addressMapper.mapCreateAddressDtoToAddress(createParkingLotDto.getAddress()),
+                divisionRepository.findById( createParkingLotDto.getDivisionId() )
+                        .orElseThrow( () -> new IllegalArgumentException("Division Id does not exist.")),
+                addressMapper.createAddressDtoToAddress(createParkingLotDto.getAddress()),
                 contactMapper.mapCreateContactDtoToContact(createParkingLotDto.getContact())
         );
     }
@@ -38,7 +39,7 @@ public class ParkingLotMapper {
                 parkingLot.getCategory(),
                 parkingLot.getMax_capacity(),
                 divisionMapper.mapDivisionToDivisionDto(parkingLot.getDivision()),
-                addressMapper.mapAddressToAddressDto(parkingLot.getAddress()),
+                addressMapper.addressToAddressDto(parkingLot.getAddress()),
                 contactMapper.mapContactToContactDto(parkingLot.getContact())
 //                parkingLot.getDivision() != null ? divisionMapper.mapDivisionToDivisionDto( parkingLot.getDivision() ) : null,
 //                parkingLot.getAddress() != null ? addressMapper.mapAddressToAddressDto( parkingLot.getAddress() ) : null,

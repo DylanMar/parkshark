@@ -18,8 +18,10 @@ public class ParkingLot {
     @ManyToOne(cascade = {PERSIST})
     @JoinColumn(name="division_id")
     private Division division;
+
     @OneToOne(cascade = {PERSIST})
     private Address address;
+
     @ManyToOne(cascade = {PERSIST})
     @JoinColumn(name = "contact_id")
     private Contact contact;

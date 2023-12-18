@@ -23,15 +23,7 @@ public class DivisionService {
     }
 
     public DivisionDto createDivision(CreateDivisionDto createDivisionDto) {
-//        Division parentDivision = null;
-//        try {
-//            parentDivision = divisionRepository.getDivisionById( createDivisionDto.getParentDivisionId());
-//        } catch (Exception e) {  // possible for logging
-//        }
-
-//        Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto, parentDivision);
         Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto);
-
         return divisionMapper.mapDivisionToDivisionDto( divisionRepository.save(division) );
     }
 
@@ -43,7 +35,15 @@ public class DivisionService {
     }
 
     public DivisionDto getDivisionById(long id) {
-        Division division = divisionRepository.findById(id).get();     //getDivisionById(id);
+        Division division = divisionRepository.findById(id)
+                .orElseThrow( () -> new IllegalArgumentException("Id "+id+", not found."));
         return divisionMapper.mapDivisionToDivisionDto(division);
+    }
+
+    public DivisionDto createSubDivision(CreateDivisionDto createDivisionDto, long id) {
+        Division division = divisionMapper.mapCreateDivisionDtoToDivision(createDivisionDto);
+        division.setDivision( divisionRepository.findById(id)
+                .orElseThrow( () -> new IllegalArgumentException("Parent id "+id+", not found.")));
+        return divisionMapper.mapDivisionToDivisionDto( divisionRepository.save(division) );
     }
 }
