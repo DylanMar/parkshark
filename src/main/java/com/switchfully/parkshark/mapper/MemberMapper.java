@@ -2,11 +2,8 @@ package com.switchfully.parkshark.mapper;
 
 import com.switchfully.parkshark.dto.CreateMemberDto;
 import com.switchfully.parkshark.dto.MemberDto;
-import com.switchfully.parkshark.entity.Address;
 import com.switchfully.parkshark.entity.Member;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
 
 @Component
 public class MemberMapper {

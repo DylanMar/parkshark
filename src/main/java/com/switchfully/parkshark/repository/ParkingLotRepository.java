@@ -19,7 +19,8 @@ public class ParkingLotRepository {
         entityManager.persist(parkingLot);
         return entityManager
                 .createQuery("SELECT pl FROM ParkingLot pl WHERE pl=:parkingLot",ParkingLot.class)
-                .setParameter("parkinglot", parkingLot)
+                .setParameter("parkingLot", parkingLot)
                 .getSingleResult();
     }
+
 }

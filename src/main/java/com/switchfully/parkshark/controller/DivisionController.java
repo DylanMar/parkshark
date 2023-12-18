@@ -21,7 +21,6 @@ public class DivisionController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     public Division createDivision(@RequestBody CreateDivisionDto createDivisionDto) {
         return divisionService.createDivision(createDivisionDto);
-//        return createDivisionDto;
     }
 
 

@@ -10,20 +10,20 @@ public class ParkingLotDto {
     private String name;
     private Category category;
     private int max_capacity;
-    private Division division;
-    private Address address;
-    private Contact contact;
+    private DivisionDto divisionDto;
+    private AddressDto addressDto;
+    private ContactDto contactDto;
     public ParkingLotDto() {
     }
 
-    public ParkingLotDto(int id, String name, Category category, int max_capacity, Division division, Address address, Contact contact) {
+    public ParkingLotDto(int id, String name, Category category, int max_capacity, DivisionDto divisionDto, AddressDto addressDto, ContactDto contactDto) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.max_capacity = max_capacity;
-        this.division = division;
-        this.address = address;
-        this.contact = contact;
+        this.divisionDto = divisionDto;
+        this.addressDto = addressDto;
+        this.contactDto = contactDto;
     }
 
 
@@ -40,13 +40,16 @@ public class ParkingLotDto {
     public int getMax_capacity() {
         return max_capacity;
     }
-    public Division getDivision() {
-        return division;
+
+    public DivisionDto getDivisionDto() {
+        return divisionDto;
     }
-    public Address getAddress() {
-        return address;
+
+    public AddressDto getAddressDto() {
+        return addressDto;
     }
-    public Contact getContact() {
-        return contact;
+
+    public ContactDto getContactDto() {
+        return contactDto;
     }
 }
