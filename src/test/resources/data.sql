@@ -1,11 +1,3 @@
--- INSERT INTO level (id, monthly_cost, allocation_reduction, maximum_time, level_type)
--- VALUES (1, 10, 10, 10, 'BRONZE'),
---        (2, 10, 10, 10, 'SILVER'),
---        (3, 10, 10, 10, 'GOLD');
-
--- INSERT INTO admin (id, email, password)
--- VALUES (1, 'admin@parkshark.com', '$2a$12$r3fLIlWCAzvA6qgIqf.60uDPFn00QwpS6ba28LNvSXBYF0eHbVDAW');
-
 INSERT INTO level (monthly_cost, allocation_reduction, maximum_time, level_type)
 VALUES (10, 10, 10, 'BRONZE'),
        (10, 10, 10, 'SILVER'),
@@ -66,3 +58,13 @@ VALUES (1, 1, 'ABC123', 'Actief', '2023-03-01 08:00:00', NULL),
        (4, 4, 'GHI789', 'Inactief', '2023-03-01 12:45:00', '2023-03-01 17:30:00'),
        (5, 5, 'JKL012', 'Actief', '2023-03-01 07:30:00', NULL),
        (6, 6, 'MNO345', 'Actief', '2023-03-01 11:00:00', NULL);
+
+INSERT INTO level (monthly_cost, allocation_reduction, maximum_time,level_type)
+VALUES
+    (10, 10, 10, 'BRONZE'),
+    (10, 10, 10, 'SILVER'),
+    (10, 10, 10, 'GOLD');
+
+INSERT INTO admin (email, password)
+VALUES
+('admin@parkshark.com', '$2a$12$r3fLIlWCAzvA6qgIqf.60uDPFn00QwpS6ba28LNvSXBYF0eHbVDAW');

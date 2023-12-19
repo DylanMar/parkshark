@@ -2,17 +2,20 @@ package com.switchfully.parkshark.service;
 
 import com.switchfully.parkshark.dto.CreateMemberDto;
 import com.switchfully.parkshark.dto.MemberDto;
-import com.switchfully.parkshark.entity.Admin;
-import com.switchfully.parkshark.entity.LevelType;
-import com.switchfully.parkshark.entity.Member;
+
 import com.switchfully.parkshark.mapper.MemberMapper;
 import com.switchfully.parkshark.repository.LevelRepository;
 import com.switchfully.parkshark.repository.MemberRepository;
+
+import com.switchfully.parkshark.entity.LevelType;
+import com.switchfully.parkshark.entity.Member;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.sound.midi.MetaMessage;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +34,10 @@ public class MemberService {
     }
 
     public MemberDto addMember(CreateMemberDto createMemberDto) {
+
         Member member = memberMapper.createMemberDtoToMember(createMemberDto);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        member.setPassword(bCryptPasswordEncoder.encode(createMemberDto.getPassword()));
         member.setRegistrationDate(LocalDate.now());
         if(createMemberDto.getLevelType() instanceof LevelType){
             member.setLevel(levelRepository.findByLevelType(createMemberDto.getLevelType()));

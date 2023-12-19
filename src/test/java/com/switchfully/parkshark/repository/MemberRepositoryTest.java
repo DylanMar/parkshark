@@ -48,7 +48,7 @@ class MemberRepositoryTest {
         Member newMember = memberRepository.save(member);
 
         // WHEN
-        Member actual = memberRepository.findById(1L).get();
+        Member actual = memberRepository.findById(member.getId()).get();
         // THEN
         Assertions.assertThat(actual).isInstanceOf(Member.class);
     }
