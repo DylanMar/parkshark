@@ -12,6 +12,7 @@ public class Allocation {
     @Column(name="LICENSE_PLATE")
     private String licensePlate;
     @Column(name="STATUS")
+    @Enumerated(EnumType.STRING)
     private AllocationStatus status;
     @Column(name="START_TIME")
     private LocalDateTime startTime;
