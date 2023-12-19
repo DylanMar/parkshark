@@ -1,7 +1,7 @@
 package com.switchfully.parkshark.repository;
 
 import com.switchfully.parkshark.dto.ParkingLotDto;
-import com.switchfully.parkshark.entity.ParkingLot;
+import com.switchfully.parkshark.entity.*;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -23,6 +23,7 @@ public interface ParkingLotRepository extends JpaRepository<ParkingLot, Long> {
 //                .setParameter("parkingLot", parkingLot)
 //                .getSingleResult();
 //    }
+
 
 
 }
