@@ -59,14 +59,23 @@ public class AllocationService {
         }
     }
 
-    public List<AllocationDto> getAllAllocations(AllocationStatus allocationStatus) {
-        Stream<Allocation> allocationList = allocationRepository.findAll().stream();
-        if (allocationStatus != null) {
+    public List<AllocationDto> getAllAllocations(AllocationStatus allocationStatus, String direction) {
+        Stream<Allocation> allocationList = allocationRepository.findAll().stream().sorted(Comparator.comparing(Allocation::getStartTime));
+        if (allocationStatus != null ) {
             allocationList = findByAllocationStatus(allocationStatus, allocationList);
         }
-        return allocationList
+        List<AllocationDto> allocationDtos = allocationList
                 .map(allocation -> allocationMapper.allocationToAllocationDto(allocation))
                 .collect(Collectors.toList());
+        if(direction != null && direction.equals("DESC")){
+            Collections.reverse(allocationDtos);
+        }
+        return allocationDtos;
+
+    }
+
+    private Stream<Allocation> sortByDirection(String direction, Stream<Allocation> stream) {
+        return stream.sorted(Comparator.comparing(Allocation::getStartTime));
     }
 
     private Stream<Allocation> findByAllocationStatus(AllocationStatus allocationStatus, Stream<Allocation> stream){
