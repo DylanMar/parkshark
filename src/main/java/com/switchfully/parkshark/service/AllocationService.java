@@ -59,10 +59,13 @@ public class AllocationService {
         }
     }
 
-    public List<AllocationDto> getAllAllocations(AllocationStatus allocationStatus, String direction) {
+    public List<AllocationDto> getAllAllocations(AllocationStatus allocationStatus, String direction, Integer limit) {
         Stream<Allocation> allocationList = allocationRepository.findAll().stream().sorted(Comparator.comparing(Allocation::getStartTime));
         if (allocationStatus != null ) {
             allocationList = findByAllocationStatus(allocationStatus, allocationList);
+        }
+        if(limit != null){
+            allocationList = limitAllocation(limit, allocationList);
         }
         List<AllocationDto> allocationDtos = allocationList
                 .map(allocation -> allocationMapper.allocationToAllocationDto(allocation))
@@ -72,6 +75,10 @@ public class AllocationService {
         }
         return allocationDtos;
 
+    }
+
+    private Stream<Allocation> limitAllocation(Integer limit, Stream<Allocation> stream) {
+        return stream.limit(limit);
     }
 
     private Stream<Allocation> sortByDirection(String direction, Stream<Allocation> stream) {

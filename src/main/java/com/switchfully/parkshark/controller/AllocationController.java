@@ -41,9 +41,9 @@ public class AllocationController {
     }
 
     @GetMapping
-    public List<AllocationDto> getAllAllocations(@RequestHeader String email, @RequestHeader String password, @RequestParam(required = false) AllocationStatus allocationStatus, @RequestParam(required = false) String direction){
+    public List<AllocationDto> getAllAllocations(@RequestHeader String email, @RequestHeader String password, @RequestParam(required = false) AllocationStatus allocationStatus, @RequestParam(required = false) String direction, @RequestParam(required = false) Integer limit){
         adminService.authenticate(email, password);
-        return allocationService.getAllAllocations(allocationStatus, direction);
+        return allocationService.getAllAllocations(allocationStatus, direction, limit);
     }
 
 
