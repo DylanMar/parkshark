@@ -14,7 +14,7 @@ import java.util.List;
 import static io.restassured.http.ContentType.JSON;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@Sql("/data.sql")
+//@Sql("/data.sql")
 public class MemberControllerIntegrationTest {
     @LocalServerPort
     private int port;

@@ -23,7 +23,7 @@ CREATE TABLE division
 
 CREATE TABLE level
 (
-    ID            SERIAL      primary key ,
+    ID SERIAL primary key ,
     MONTHLY_COST   NUMERIC NOT NULL,
     ALLOCATION_REDUCTION NUMERIC NOT NULL,
     MAXIMUM_TIME NUMERIC NOT NULL,

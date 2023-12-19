@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootTest
-@Sql("/data.sql")
+//@Sql("/data.sql")
 class MemberRepositoryTest {
     @Autowired
     private LevelRepository levelRepository;

@@ -16,6 +16,7 @@ public class AdminService {
 
     public Admin authenticate(String email, String password){
         Admin admin = adminRepository.findByEmail(email);
+        System.out.println(admin);
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         if (!bCryptPasswordEncoder.matches(password, admin.getPassword())){
             throw new RuntimeException();
