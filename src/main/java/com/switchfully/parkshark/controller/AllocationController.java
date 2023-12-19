@@ -18,13 +18,21 @@ public class AllocationController {
         this.allocationService = allocationService;
         this.memberService = memberService;
     }
-    @PostMapping(consumes = "application/json")
+    @PostMapping(consumes = "application/json",produces = "application/json")
     @ResponseStatus(CREATED)
     public AllocationDto createAllocation(@RequestHeader String email, @RequestHeader String password, @RequestBody CreateAllocationDto createAllocationDto){
         Member member = memberService.authenticate(email, password);
         allocationService.checkLicensePlate(member, createAllocationDto);
 
         return allocationService.startAllocation(member, createAllocationDto);
+    }
+
+    @PutMapping(path = "/{id}", consumes = "application/json", produces = "application/json")
+    @ResponseStatus(CREATED)
+    public AllocationDto stopAllocation(@RequestHeader String email, @RequestHeader String password, @PathVariable Long id, @RequestBody UpDateAllocationDto upDateAllocationDto){
+        Member member = memberService.authenticate(email, password);
+        allocationService.checkAllocation(member, id);
+        return allocationService.stopAllocation(member, id, upDateAllocationDto);
     }
 
 }

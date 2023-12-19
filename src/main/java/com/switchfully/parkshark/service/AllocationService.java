@@ -38,4 +38,23 @@ public class AllocationService {
             }
         }
     }
+
+    public AllocationDto stopAllocation(Member member, Long id, UpDateAllocationDto upDateAllocationDto) {
+        Allocation allocation = allocationRepository.findById(id).get();
+        allocation.setStopTime(upDateAllocationDto.getStopTime());
+        allocation.setStatus(AllocationStatus.STOPPED);
+        return allocationMapper.allocationToAllocationDto(allocationRepository.save(allocation));
+
+    }
+
+    public void checkAllocation(Member member, Long id){
+        Allocation allocation = allocationRepository.findById(id).get();
+        if(allocation.getMember() != member){
+            throw new RuntimeException();
+        } else {
+            if(allocation.getStatus() == AllocationStatus.STOPPED){
+                throw new RuntimeException();
+            }
+        }
+    }
 }
