@@ -42,4 +42,10 @@ public class ParkingLotService {
                 .map(parkingLostMapper::mapParkingLotToParkingLotGdprDto)
                 .collect(Collectors.toList());
     }
+
+    public ParkingLotDto getParkingLotById(long id) {
+        return parkingLostMapper.mapParkingLotToParkingLotDto(
+                parkingLotRepository.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("ParkingLot with id " + id + " does not exist.")));
+    }
 }
