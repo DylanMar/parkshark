@@ -23,8 +23,8 @@ public class AllocationService {
     public AllocationDto startAllocation(Member member, CreateAllocationDto createAllocationDto) {
         Allocation allocation = allocationMapper.createAllocationDtoToAllocation(createAllocationDto);
         allocation.setMember(member);
-        ParkingLot parkingLot = parkingLotRepository.findById(createAllocationDto.getParkingLotId());
-        allocation.setParkingLot(parkingLot);
+        /* ParkingLot parkingLot = parkingLotRepository.findById(createAllocationDto.getParkingLotId());
+        allocation.setParkingLot(parkingLot);*/
 
         return allocationMapper.allocationToAllocationDto(allocationRepository.save(allocation));
     }
