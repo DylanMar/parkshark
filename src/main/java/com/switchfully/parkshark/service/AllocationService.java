@@ -81,10 +81,6 @@ public class AllocationService {
         return stream.limit(limit);
     }
 
-    private Stream<Allocation> sortByDirection(String direction, Stream<Allocation> stream) {
-        return stream.sorted(Comparator.comparing(Allocation::getStartTime));
-    }
-
     private Stream<Allocation> findByAllocationStatus(AllocationStatus allocationStatus, Stream<Allocation> stream){
         return stream.filter(allocation -> allocation.getStatus().equals(allocationStatus));
     }

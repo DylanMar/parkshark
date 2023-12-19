@@ -39,7 +39,7 @@ public class MemberService {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         member.setPassword(bCryptPasswordEncoder.encode(createMemberDto.getPassword()));
         member.setRegistrationDate(LocalDate.now());
-        if(createMemberDto.getLevelType() instanceof LevelType){
+        if(createMemberDto.getLevelType() != null){
             member.setLevel(levelRepository.findByLevelType(createMemberDto.getLevelType()));
         } else {
             member.setLevel(levelRepository.findByLevelType(LevelType.BRONZE));
@@ -48,7 +48,7 @@ public class MemberService {
     }
 
     public List<MemberDto> getAllMembers() {
-        return memberRepository.findAll().stream().map(member -> memberMapper.memberToMemberDto(member)).collect(Collectors.toList());
+        return memberRepository.findAll().stream().map(memberMapper::memberToMemberDto).collect(Collectors.toList());
     }
 
     public MemberDto getById(Long id) {
