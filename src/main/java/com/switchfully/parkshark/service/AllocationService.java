@@ -7,6 +7,7 @@ import com.switchfully.parkshark.repository.*;
 import org.springframework.stereotype.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 @Service
 public class AllocationService {
@@ -57,4 +58,19 @@ public class AllocationService {
             }
         }
     }
+
+    public List<AllocationDto> getAllAllocations(AllocationStatus allocationStatus) {
+        Stream<Allocation> allocationList = allocationRepository.findAll().stream();
+        if (allocationStatus != null) {
+            allocationList = findByAllocationStatus(allocationStatus, allocationList);
+        }
+        return allocationList
+                .map(allocation -> allocationMapper.allocationToAllocationDto(allocation))
+                .collect(Collectors.toList());
+    }
+
+    private Stream<Allocation> findByAllocationStatus(AllocationStatus allocationStatus, Stream<Allocation> stream){
+        return stream.filter(allocation -> allocation.getStatus().equals(allocationStatus));
+    }
+
 }
